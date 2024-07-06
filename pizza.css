@@ -1,0 +1,128 @@
+body {
+    background-color: #70e000;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin-left: 1.5em;
+    margin-right: 1.5em;
+}
+
+.cart{
+    background-color: bisque;
+    text-align: center;
+}
+
+
+.pizza {
+    border: 3px solid#550527;
+    padding: 1em;
+    margin: 1em;
+    margin-bottom: 3em;
+    margin-left: 0;
+    border-radius: 2em;
+    width: 80%;
+
+}
+
+.heading {
+    text-align: center;
+    border: 1px solid #550527;
+    border-radius: 2em;
+
+}
+
+.medium_pizza {
+    background-color: #A10702;
+    text-align: center;
+}
+
+.large_pizza {
+    background-color: #FAA613;
+    text-align: center;
+}
+
+.small_pizza {
+    background-color: #F44708;
+    text-align: center;
+}
+
+.payButton{
+    border: 1px solid black;
+    color: black;
+}
+
+.payAmount{
+    background-color: gainsboro;
+    color: black;
+    border: 1px solid black;
+    width: 100px;
+}
+
+.payAmount::placeholder{
+    color: black;
+}
+
+.noPizza0, .noPizza1, .noPizza2{
+    background-color: gainsboro;
+    color: black;
+    border: 1px solid black;
+    width: 40px;
+}
+
+.noPizza::placeholder{
+    color: black;
+}
+
+.total{
+    background-color: gainsboro;
+    color: black;
+    border: 1px solid black;
+    width: 50px;
+}
+
+.hidden{
+    display: none;
+}
+
+.hH30, .hH31, .hH32, .hH33{
+    display: none;
+}
+
+.total::placeholder{
+    color: black;
+}
+
+
+
+@media (min-width: 960px) {
+
+    .pizzas {
+        display: flex;
+    }
+}
+
+@media (max-width: 960px) {
+
+    .details {
+        width: 80%;
+    }
+}
+
+.details {
+    background-color: #0081A7;
+    padding: 1em;
+    margin: 1em;
+    margin-bottom: 3em;
+    margin-left: 0;
+    border: 3px solid #550527;
+    border-radius: 2em;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    flex: 1;
+
+    .left {
+        justify-self: flex-start;
+    }
+
+    .right {
+        justify-self: flex-end;
+    }
+}
