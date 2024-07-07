@@ -82,6 +82,14 @@ body {
     display: none;
 }
 
+.hiddenTotal{
+    display: none;
+}
+
+.payRecord{
+    display: none;
+}
+
 .hH30, .hH31, .hH32, .hH33{
     display: none;
 }
@@ -89,6 +97,11 @@ body {
 .total::placeholder{
     color: black;
 }
+
+.checkOut{
+
+}
+
 
 
 

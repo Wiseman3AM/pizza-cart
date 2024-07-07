@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Pizza Cart</title>
+    <!--  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">-->
+    <link rel="stylesheet" href="pizza.css">
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js" defer></script>
+    <script src="index.js" defer></script>
+</head>
+<body>
+    <h1 class="heading">Perfect Pizza </h1>
+
+    <div class="cart">
+        <div>
+            <h1>Shopping cart</h1>
+        </div>
+        <div >
+            Small: R31.99
+             <button class= "increment0">+</button>
+            <button class="decrement0" >-</button>
+            <input class="noPizza0" id="smallInput" type="text" placeholder="0" readonly> 
+        </div>
+
+        <div>
+            Meduim: R58.99
+            <button class="increment1">+</button>
+            <button class="decrement1">-</button>
+            <input class="noPizza1" id="mediumInput" type="text" placeholder="0" readonly> 
+        </div>
+
+        <div>
+            large: R87.99
+             <button class="increment2">+</button>
+            <button class="decrement2">-</button>
+            <input class="noPizza2" id="largeInput" type="text" placeholder="0" readonly> 
+        </div>
+
+        <div>Total cost <input class="total" id="totalInput" type="text" placeholder="R 0.00" readonly> 
+            <input class="hiddenTotal" type="text" id="totalValue">
+        </div>
+
+        <div class="checkOut" id="checkIT"><button class="checkoutButton" id="revealCheckout">CHECKOUT</button></div>
+
+        <h3 class="hH30" id="greenGO" style="color: green;">Enjoy your Pizza &#x1F389;</h3>
+        <h3 class="hH31" id="redStop" style="color: red;">Sorry - that is not enough money!</h3>
+        <h3 class="hH32" id="orangeWow" style="color: orange;">Invalid input please enter the amount required! </h3>
+
+        <div class="hidden" id="hiddenCheckOut">
+            Pay Amount:  <input class="payAmount" type="text" id="fixedPayAmount" placeholder="0.00">
+            <div> <button class="payButton" id="paymentButton">Pay</button>
+            </div>
+        </div>
+        
+
+
+    </div>
+  
+  
+  
+    <div class="pizzas">
+        <div class="pizza small_pizza">
+            <img src="pizzaS.jpeg" width="125">
+            <h2>Small Pizza</h2>
+            <h3>R31.99</h3>
+            <div>
+                Small pizza with 3 toppings max. 3 meat toppings max. 3 or less other toppings.
+            </div>
+            <button class="buyButton0">BUY</button>
+        </div>
+
+        <div class="pizza medium_pizza">
+            <img src="pizzaM.jpeg" width="150">
+            <h2>Medium Pizza</h2>
+            <h3>R58.99</h3>
+            <div>
+                Meduim margeritha pizza with 3 toppings max. 2 or less meat toppings. 3 or less other toppings.
+            </div>
+            <button class="buyButton1">BUY</button>
+        </div>
+
+        <div class="pizza large_pizza">
+            <img src="pizzaL.jpeg" width="175">
+            <h2>Large Pizza</h2>
+            <h3>R87.99</h3>
+            <div>
+                Large margeritha pizza with 3 toppings max. 3 meat toppings max. 3 or less other toppings.
+            </div>
+            <button class="buyButton2">BUY</button>
+        </div>
+    </div>
+
+    <div class="details">
+        <div class="left">
+            <h2>Contact Details</h2>
+            <p> Contact us at: 011 340 1231</p>
+            <p>info@<a href="Perfectpizza.co.za">Perfectpizza.co.za</a></p>
+            <p>Instagram@ <a href="perfectpizza">perfectpizza</a></p>
+            <p>Facebook@ <a href="perfectpizza">perfectpizza</a></p>
+        </div>
+
+        <div class="right">
+            <h2>Address</h2>
+            <p>Pizza Plaza</p>
+            <p>Dough Road</p>
+            <p>Base Town</p>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -3,61 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Pizza Cart</title>
-    <!--  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">-->
-    <link rel="stylesheet" href="pizza.css">
+    <title>Online Pizza Cart1</title>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js" defer></script>
-    <script src="index.js" defer></script>
+    <link rel="stylesheet" href="alpine.css">
+    <script src="alpine.js" defer></script>
 </head>
 <body>
     <h1 class="heading">Perfect Pizza </h1>
 
-    <div class="cart">
-        <div>
-            <h1>Shopping cart</h1>
-        </div>
-        <div >
-            Small: R31.99
-             <button class= "increment0">+</button>
-            <button class="decrement0" >-</button>
-            <input class="noPizza0" id="smallInput" type="text" placeholder="0" readonly> 
-        </div>
+   <section class="cart">
+    <div x-data="{ 
+        sCount: 0, 
+        mCount: 0, 
+        lCount: 0, 
+        total: 0, 
+        isCheckout: false, 
+        isPayment: false,       
+        confirm: false,
+        inputValue: '',
+        message: false,
+        total: 0.00,  
+      }">
+       <section>
+        Small: R 31.99
+        <button x-on:click="sCount++; total = Math.max(total + 31.99, 0)" :disabled="isCheckout || message">+</button>
+        <button x-on:click="sCount = Math.max(sCount - 1, 0); total -= 31.99" :disabled="sCount === 0 || isCheckout || message">-</button>
+        <span x-text="sCount"> </span>
+      </section>
 
-        <div>
-            Meduim: R58.99
-            <button class="increment1">+</button>
-            <button class="decrement1">-</button>
-            <input class="noPizza1" id="mediumInput" type="text" placeholder="0" readonly> 
-        </div>
+      <section>
+        Medium: R 58.99
+        <button x-on:click="mCount++; total = Math.max(total + 58.99, 0)" :disabled="isCheckout || message">+</button>
+        <button x-on:click="mCount = Math.max(mCount - 1, 0); total -= 58.99" :disabled="mCount === 0 || isCheckout || message">-</button>
+        <span x-text="mCount"> </span>
+      </section>
 
-        <div>
-            large: R87.99
-             <button class="increment2">+</button>
-            <button class="decrement2">-</button>
-            <input class="noPizza2" id="largeInput" type="text" placeholder="0" readonly> 
-        </div>
+      <section>
+        Large: R 87.99
+        <button x-on:click="lCount++; total = Math.max(total + 87.99, 0)" :disabled="isCheckout || message">+</button>
+        <button x-on:click="lCount = Math.max(lCount - 1, 0); total -= 87.99" :disabled="lCount === 0 || isCheckout  || message ">-</button>
+        <span x-text="lCount"> </span>
+      </section>
 
-        <div>Total cost <input class="total" id="totalInput" type="text" placeholder="R 0.00" readonly> 
-        </div>
+      <section>
+        Total cost: R <span x-text="Math.max(0, total.toFixed(2))"> </span>
+    </section>
 
-        <div class="checkOut"><button class="checkoutButton" id="revealCheckout">CHECKOUT</button></div>
+    <section>
+        <button
+      class="checkout"
+      x-show="!isPayment && total > 0"
+      @click="confirm = true"
+      :disabled="total === 0"
+    >Checkout</button>
+    
+    <span x-show="confirm">Are you sure?</span>
+    <button class="confirmation0" x-show="confirm" @click="isCheckout = true; confirm = false; isPayment = true">YES</button>
+    <button class="confirmation0" x-show="confirm" @click="confirm = false">NO</button>
 
-        <h3 class="hH30"  style="color: green;">Enjoy your Pizza &#x1F389;</h3>
-        <h3 class="hH31" style="color: red;">Sorry - that is not enough money!</h3>
-        <h3 class="hH32" style="color: orange;">Sorry - that is too much! </h3>
-        <h3 class="hH33" style="color: red;">ERROR - ONLY USE NUMBERS &#x26A0;</h3>
+    <input x-show="isCheckout" type="text" x-model.number="inputValue">
+    <button class="pay" x-show="isCheckout" @click="message = true; isCheckout = false">PAY</button>
+    
 
-        <div class="hidden" id="hiddenCheckOut">
-            Pay Amount:  <input class="payAmount" type="text" id="fixedPayAmount" placeholder="R 0.00" readonly> 
-        </div>
-        <div> <button class="payButton" id="paymentButton">Pay</button>
-        </div>
+    <section x-show="message">
+    <h3 class="hH30" id="successMessage" x-show="isPayment && Number(inputValue.toFixed(2)) == total">Enjoy your Pizza &#x1F389;</h3>
+    <h3 class="hH31" id="successMessage" x-show="isPayment && (Number(inputValue.toFixed(2)) !== total)">Invalid input! Enter the required Amount.</h3>
+    <button 
+    class="repay" 
+    x-show="isPayment && (Number(inputValue.toFixed(2)) !== total)"< total"
+    @click="isCheckout = true; confirm = false; isPayment = true; message = false"
+    >Enter Amount
+    </button>
+    <button 
+    class="repay" 
+    x-show="isPayment && (Number(inputValue.toFixed(2)) !== total)"< total"
+    @click="isCheckout = true; confirm = false; isPayment = true; message = false"
+    >Enter Amount
+    </button>
 
+    <script>
+        if (document.querySelector('section[x-show="message"]')) {
+          setTimeout(() => {
+            document.querySelector('section[x-show="message"]').style.display = "none";
+          }, 5000);
+        }
+        </script>
 
-    </div>
-  
-  
-  
+    </section>
+    </section>
+    </section>
+
+    <section>
+
     <div class="pizzas">
         <div class="pizza small_pizza">
             <img src="pizzaS.jpeg" width="125">
@@ -66,7 +103,7 @@
             <div>
                 Small pizza with 3 toppings max. 3 meat toppings max. 3 or less other toppings.
             </div>
-            <button class="buyButton">BUY</button>
+            <button class="buyButton0" x-on:click="sCount++; total = Math.max(total + 31.99, 0)">BUY</button>
         </div>
 
         <div class="pizza medium_pizza">
@@ -76,7 +113,7 @@
             <div>
                 Meduim margeritha pizza with 3 toppings max. 2 or less meat toppings. 3 or less other toppings.
             </div>
-            <button class="buyButton">BUY</button>
+            <button class="buyButton1" x-on:click="mCount++; total = Math.max(total + 58.99, 0)">BUY</button>
         </div>
 
         <div class="pizza large_pizza">
@@ -86,7 +123,7 @@
             <div>
                 Large margeritha pizza with 3 toppings max. 3 meat toppings max. 3 or less other toppings.
             </div>
-            <button class="buyButton">BUY</button>
+            <button class="buyButton2" x-on:click="lCount++; total = Math.max(total + 87.99, 0)">BUY</button>
         </div>
     </div>
 
@@ -108,6 +145,10 @@
         </div>
 
     </div>
-
+</div>
+</div>
+      
+</section>
+      
 </body>
 </html>
