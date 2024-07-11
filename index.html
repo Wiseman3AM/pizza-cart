@@ -26,30 +26,48 @@
             ltotal: 0.00, 
         }">
    <section class="cart">
+
+    <section class="cartButtons">
    
-       <section>
-        Small pizzas: <span x-text="sCount"></span>
+       <section >
+        <span class="addTextS">Small pizzas: </span>  
+        <span class="tcCartS" x-text="sCount"></span>
+        
+        <section class="add-subS">
         <button x-on:click="sCount++; total = Math.max(total + 31.99, 0); stotal = Math.max(stotal + 31.99, 0)" :disabled="isCheckout || message">+</button>
         <button x-on:click="sCount = Math.max(sCount - 1, 0); total -= 31.99; stotal -= 31.99" :disabled="sCount === 0 || isCheckout || message">-</button>
+    </section>
+        
         <span x-text="currency + Math.max(0, stotal.toFixed(2))"></span>
         
       </section>
 
-      <section>
-        Medium pizzas: <span x-text="mCount"></span>
+      <section >
+        <span class="addTextM">Medium pizzas: </span> 
+        <span class="tcCartM" x-text="mCount"></span>
+        
+       <section class="add-subM"> 
         <button x-on:click="mCount++; total = Math.max(total + 58.99, 0); mtotal = Math.max(mtotal + 58.99, 0)" :disabled="isCheckout || message">+</button>
         <button x-on:click="mCount = Math.max(mCount - 1, 0); total -= 58.99; mtotal -= 58.99" :disabled="mCount === 0 || isCheckout || message">-</button>
+    </section>
+        
         <span x-text="currency + Math.max(0, mtotal.toFixed(2))"></span>
         
       </section>
 
-      <section>
-        Large pizzas: <span x-text="lCount"></span>
+      <section >
+        <span class="addTextL">Large pizzas:</span>
+        <span class="tcCartL" x-text="lCount"></span>
+        
+        <section class="add-subL">
         <button x-on:click="lCount++; total = Math.max(total + 87.99, 0); ltotal = Math.max(ltotal + 87.99, 0)" :disabled="isCheckout || message">+</button>
         <button x-on:click="lCount = Math.max(lCount - 1, 0); total -= 87.99; ltotal -= 87.99" :disabled="lCount === 0 || isCheckout || message">-</button>
+    </section>
+        
         <span x-text="currency + Math.max(0, ltotal.toFixed(2))"></span>
         
       </section>
+    </section>
 
       <section>
         Total cost: R <span x-text="Math.max(0, total.toFixed(2))"> </span>
@@ -69,37 +87,53 @@
 
     <input x-show="isCheckout" type="text" x-model.number="inputValue">
     <button class="pay" x-show="isCheckout" @click="message = true; isCheckout = false">PAY</button>
+    <button class="pay" x-show="isCheckout" @click="isCheckout = false;  
+    confirm = false;    
+    isPayment = false;  
+    message = false;">Cancel</button>
     
 
     <section x-show="message">
     <h3 class="hH30" id="successMessage" x-show="isPayment && Number(inputValue) == total">Enjoy your Pizza &#x1F389;</h3>
     <h3 class="hH31" id="successMessage" x-show="isPayment && (Number(inputValue) < total)">Invalid input! Enter the required Amount.</h3>
     <span class="hH32" id="successMessage" x-show="isPayment && (Number(inputValue) > total)">
-    <h3>Enjoy your Pizza &#x1F389;</h3>
-    <P>Here is your change:</P>
-    <P class="change" x-text="currency +((inputValue.toFixed(2)  - total.toFixed(2)).toFixed(2))"></P>
+        <h3>Enjoy your Pizza &#x1F389;</h3>
+        <p>Here is your change:</p>
+        <p class="change" x-text="currency + (Number(inputValue).toFixed(2) - total.toFixed(2)).toFixed(2)"></p>
     </span>
-    <button 
-    class="repay" 
-    x-show="isPayment && (Number(inputValue) < total)"
-    @click="isCheckout = true; confirm = false; isPayment = true; message = false"
-    >Enter Amount
-    </button>
 
     <button 
-    class="repay" 
-    x-show="isPayment && (Number(inputValue) == total) || isPayment && (Number(inputValue) > total)"
-    @click="isCheckout = false; confirm = true; isPayment = false; message = true">
-    Order again
-    </button>
+class="repay" 
+x-show="isPayment && (Number(inputValue) < total)"
+@click="console.log('Enter Amount clicked'); isCheckout = true; confirm = false; isPayment = true; message = false">
+Enter Amount
+</button>
 
-    <template x-if="message">
-        <script>
-          setTimeout(() => {
-            message = false;
-          }, 5000); 
-        </script>
-      </template>
+<button 
+class="repay" 
+x-show="(isPayment && Number(inputValue) == total) || (isPayment && Number(inputValue) > total)"
+@click="
+isCheckout = false;  
+confirm = false;    
+isPayment = false;  
+message = false;    
+
+sCount = 0;
+mCount = 0;
+lCount = 0;
+
+total = 0.00;
+stotal = 0.00;
+mtotal = 0.00;
+ltotal = 0.00;
+">
+Order again
+</button>
+    
+    
+
+
+
       
     </section>
     </section>

@@ -1,14 +1,40 @@
 body {
     background-color: #A10702;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: Helvetica;
+    font-weight: bolder;
+    margin-left: 1.5em;
+    margin-right: 1.5em;
 }
 
-.cart{
-    background-color: #FAA613 ;
+.cart {
+    background-color: #FAA613;
     text-align: center;
     border: 3px solid #FAA613;
     border-radius: 1em;
+    padding: 1em;
 }
+
+
+
+.cartButtons {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    width: 100%;
+    
+}
+
+.cartItem {
+    display: flex; 
+    justify-content: space-between;
+   
+    margin: 0.5em 0;
+}
+
+.addTextS, .addTextM, .addTextL {
+    flex: 1;
+}
+
 
 .hH30{
     color: green;
@@ -28,6 +54,36 @@ body {
 .change{
     color: black;
 }
+
+/*.addTextS, 
+.addTextL{
+  padding-left: 10px;
+}
+
+.addTextM{
+    padding-left: 8px;
+
+}
+
+.tcCartS, .tcCartL{
+    padding-right: ;
+   
+}
+
+.tcCartM{
+    padding-left: ;
+   
+}
+
+.add-subM,
+.add-subS, 
+.add-subL{
+    padding-left: 10px;
+   
+}*/
+
+
+
 
 
 .pizza {
