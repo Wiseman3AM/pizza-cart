@@ -20,6 +20,15 @@ body {
     font-weight: bolder;
 }
 
+.hH32{
+    color: green;
+    font-weight: bolder;
+}
+
+.change{
+    color: black;
+}
+
 
 .pizza {
     border: 3px solid #FAA613;
